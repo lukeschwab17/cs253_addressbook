@@ -1,0 +1,104 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+a, h1, h2 {
+    color: #3498db; /* A more vibrant blue */
+}
+
+h1, h2 {
+    font-family: 'Georgia', serif;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 2em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #333; /* Darker color for better readability */
+}
+
+.page {
+    max-width: 960px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.entries {
+    list-style-type: none;
+    padding: 0;
+}
+
+.entries li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.add-entry, .sort_selected {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fafafa;
+    border: 1px solid #eaeaea;
+    border-radius: 4px; /* Rounded corners for a softer look */
+}
+
+.add-entry dl, .sort_selected div {
+    margin-bottom: 10px;
+}
+
+.metanav {
+    text-align: right;
+    font-size: 0.9em;
+    padding: 0.5em;
+    background-color: #fafafa;
+}
+
+.flash, .error {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+}
+
+.flash {
+    background-color: #e1f5fe;
+    color: #0277bd;
+}
+
+.error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.radio-container {
+    display: block;
+    margin-right: 15px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.left-column {
+    flex: 5; /* Makes the left column take up 3/4 of the available space */
+    padding: 10px; /* Adds some spacing around the content */
+}
+
+.right-column {
+    flex: 1; /* Makes the right column take up the remaining 1/4 of the available space */
+    padding: 10px; /* Adds some spacing around the content */
+}
+
