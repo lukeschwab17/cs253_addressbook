@@ -107,18 +107,21 @@ def sort_entry():
     if sort_selected in ALLOWED_SORT_FIELDS:
         db = get_db()
         cur = db.execute(f'SELECT name, email, phone_number, address FROM entries ORDER by {sort_selected}')
+        flash(f'Entries sorted by {sort_selected}')
         return render_template('show_entries.html', entries=cur.fetchall())
     else:
+        flash('Entries not sorted, no sort type selected')
         return redirect('show_entries')
 @app.route('/delete', methods=['post'])
 def delete_entry():
-    #entry_id = request.form[]
+    entry_id = int(request.form['entry-to-delete'])
+
     db = get_db()
     db.execute('DELETE FROM entries WHERE id = ?', (entry_id,))
     db.commit()
+    flash('Entry deleted successfully.')
 
-
-
+    return redirect(request.referrer)
 
 
 if __name__ == '__main__':
