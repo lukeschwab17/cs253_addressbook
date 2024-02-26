@@ -110,3 +110,6 @@ def add_entry():
 #     category_selected = request.form.get('category_selected', None)
 #     # Redirect to the show_entries route with the selected category as a query parameter
 #     return redirect(url_for('show_entries', category=category_selected))
+
+if __name__ == '__main__':
+    app.run(debug=True)
