@@ -14,7 +14,7 @@ import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, g, redirect, url_for, render_template, flash
 
-
+ALLOWED_SORT_FIELDS = ['name', 'email', 'phone_number', 'address']
 # create our little application :)
 app = Flask(__name__)
 
@@ -80,19 +80,8 @@ def close_db(error):
 #
 #     return render_template('show_entries.html', entries=entries)
 def show_entries():
-    sort_selected = request.args.get('sort_selected', None)
     db = get_db()
-
-    ALLOWED_SORT_FIELDS = ['name', 'email', 'phone_number', 'address']
-    entries = []
-
-    if sort_selected in ALLOWED_SORT_FIELDS:
-        # Safely sorting based on predefined allowed fields
-        query = f'SELECT name, email, phone_number, address FROM entries ORDER BY {sort_selected}'
-        entries = db.execute(query).fetchall()
-    else:
-        # If no sort is specified or it's not allowed, show all entries without sorting
-        entries = db.execute('SELECT name, email, phone_number, address FROM entries').fetchall()
+    entries = db.execute('SELECT name, email, phone_number, address FROM entries').fetchall()
 
     return render_template('show_entries.html', entries=entries)
 
@@ -110,3 +99,32 @@ def add_entry():
 #     category_selected = request.form.get('category_selected', None)
 #     # Redirect to the show_entries route with the selected category as a query parameter
 #     return redirect(url_for('show_entries', category=category_selected))
+
+@app.route('/sort', methods=['GET'])
+def sort_entry():
+    sort_selected = request.args['sort_selected']
+
+    if sort_selected in ALLOWED_SORT_FIELDS:
+        db = get_db()
+        cur = db.execute(f'SELECT name, email, phone_number, address FROM entries ORDER by {sort_selected}')
+        flash(f'Entries sorted by {sort_selected}')
+        return render_template('show_entries.html', entries=cur.fetchall())
+    else:
+        flash('Entries not sorted, no sort type selected')
+        return redirect('show_entries')
+        
+@app.route('/delete', methods=['post'])
+def delete_entry():
+    entry_id = int(request.form['entry-to-delete'])
+
+    db = get_db()
+    db.execute('DELETE FROM entries WHERE id = ?', (entry_id,))
+    db.commit()
+    flash('Entry deleted successfully.')
+
+    return redirect(request.referrer)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
