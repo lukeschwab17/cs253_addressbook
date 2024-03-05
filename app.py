@@ -81,7 +81,7 @@ def close_db(error):
 #     return render_template('show_entries.html', entries=entries)
 def show_entries():
     db = get_db()
-    entries = db.execute('SELECT name, email, phone_number, address FROM entries').fetchall()
+    entries = db.execute('SELECT * FROM entries').fetchall()
 
     return render_template('show_entries.html', entries=entries)
 
@@ -106,8 +106,8 @@ def sort_entry():
 
     if sort_selected in ALLOWED_SORT_FIELDS:
         db = get_db()
-        cur = db.execute(f'SELECT name, email, phone_number, address FROM entries ORDER by {sort_selected}')
-        flash(f'Entries sorted by {sort_selected}')
+        cur = db.execute(f'SELECT * FROM entries ORDER by {sort_selected}')
+        flash(f'Entries sorted by {sort_selected.replace('_', ' ')}')
         return render_template('show_entries.html', entries=cur.fetchall())
     else:
         flash('Entries not sorted, no sort type selected')
