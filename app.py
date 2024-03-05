@@ -112,6 +112,7 @@ def sort_entry():
     else:
         flash('Entries not sorted, no sort type selected')
         return redirect('show_entries')
+        
 @app.route('/delete', methods=['post'])
 def delete_entry():
     entry_id = int(request.form['entry-to-delete'])
@@ -125,4 +126,5 @@ def delete_entry():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
+
