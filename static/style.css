@@ -1,12 +1,12 @@
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #2D3250;
     margin: 0;
     padding: 0;
 }
 
 a, h1, h2 {
-    color: #3498db; /* A more vibrant blue */
+    color: #424769;
 }
 
 h1, h2 {
@@ -17,7 +17,7 @@ h1, h2 {
 
 h1 {
     font-size: 2em;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #2D3250;
     padding-bottom: 0.3em;
 }
 
@@ -29,9 +29,9 @@ h2 {
 .page {
     max-width: 960px;
     margin: 20px auto;
-    border: 1px solid #ddd;
+    border: 1px solid #2D3250;
     padding: 20px;
-    background-color: white;
+    background-color: #F6B17A;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
@@ -42,14 +42,14 @@ h2 {
 
 .entries li {
     padding: 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #2D3250;
 }
 
 .add-entry, .sort_selected {
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #fafafa;
-    border: 1px solid #eaeaea;
+    background-color: #F6B17A;
+    border: 1px solid #2D3250;
     border-radius: 4px; /* Rounded corners for a softer look */
 }
 
@@ -67,7 +67,7 @@ h2 {
 .flash, .error {
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #2D3250;
     border-radius: 4px;
 }
 
