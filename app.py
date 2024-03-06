@@ -66,19 +66,6 @@ def close_db(error):
 
 
 @app.route('/')
-# def show_entries():
-#     sort_selected = request.args.get('sort_elected', None)
-#     db = get_db()
-#
-#     if sort_selected:
-#         # Filter entries by the selected categories
-#         query = f'SELECT name, email, phone_number, address FROM entries SORT BY {sort_selected}'
-#         entries = db.execute(query, category_select_list).fetchall()
-#     else:
-#         # If no category is specified, show all entries
-#         entries = db.execute('SELECT name, email, phone_number, address FROM entries').fetchall()
-#
-#     return render_template('show_entries.html', entries=entries)
 def show_entries():
     db = get_db()
     entries = db.execute('SELECT * FROM entries').fetchall()
@@ -103,16 +90,20 @@ def add_entry():
 
 @app.route('/sort', methods=['GET'])
 def sort_entry():
-    sort_selected = request.args['sort_selected']
+    try:
+        sort_selected = request.args['sort_selected']
+    except:
+        flash('Please select a sort type to sort.')
+        return redirect('/')
 
     if sort_selected in ALLOWED_SORT_FIELDS:
         db = get_db()
-        cur = db.execute(f'SELECT * FROM entries ORDER by {sort_selected}')
+        cur = db.execute(f'SELECT * FROM entries ORDER by LOWER({sort_selected})')
         flash(f'Entries sorted by {sort_selected.replace('_', ' ')}')
         return render_template('show_entries.html', entries=cur.fetchall())
     else:
         flash('Entries not sorted, no sort type selected')
-        return redirect('show_entries')
+        return redirect('/')
 
 
 @app.route('/delete', methods=['post'])
