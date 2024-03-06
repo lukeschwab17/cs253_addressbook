@@ -100,6 +100,7 @@ def add_entry():
 #     # Redirect to the show_entries route with the selected category as a query parameter
 #     return redirect(url_for('show_entries', category=category_selected))
 
+
 @app.route('/sort', methods=['GET'])
 def sort_entry():
     sort_selected = request.args['sort_selected']
@@ -112,7 +113,8 @@ def sort_entry():
     else:
         flash('Entries not sorted, no sort type selected')
         return redirect('show_entries')
-        
+
+
 @app.route('/delete', methods=['post'])
 def delete_entry():
     entry_id = int(request.form['entry-to-delete'])
