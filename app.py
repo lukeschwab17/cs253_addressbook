@@ -106,7 +106,7 @@ def sort_entry():
 
     if sort_selected in ALLOWED_SORT_FIELDS:
         db = get_db()
-        cur = db.execute(f'SELECT name, email, phone_number, address FROM entries ORDER by {sort_selected}')
+        cur = db.execute(f'SELECT name, email, phone_number, address FROM entries ORDER by LOWER({sort_selected})')
         flash(f'Entries sorted by {sort_selected}')
         return render_template('show_entries.html', entries=cur.fetchall())
     else:
